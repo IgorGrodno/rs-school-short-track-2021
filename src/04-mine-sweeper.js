@@ -22,13 +22,61 @@
  * ]
  */
 function minesweeper(matrix) {
-  // const maxIndex = matrix.length - 1;
-  const result = matrix;
+  const result = [];
   for (let i = 0; i < matrix.length; i++) {
-    for (let j = 0; j < matrix[i].length; i++) {
-      result[i][j] = 0;
+    result.push([]);
+  }
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < matrix[i].length; j++) {
+      result[i].push(0);
     }
   }
+
+  for (let i = 0; i < result.length; i++) {
+    for (let j = 0; j < result[i].length; j++) {
+      if (i - 1 >= 0 && j - 1 >= 0) {
+        if (matrix[i - 1][j - 1] === true) {
+          result[i][j]++;
+        }
+      }
+      if (i - 1 >= 0) {
+        if (matrix[i - 1][j] === true) {
+          result[i][j]++;
+        }
+      }
+      if (j - 1 >= 0) {
+        if (matrix[i][j - 1] === true) {
+          result[i][j]++;
+        }
+      }
+      if (i + 1 < matrix.length && j + 1 < matrix.length) {
+        if (matrix[i + 1][j + 1] === true) {
+          result[i][j]++;
+        }
+      }
+      if (i + 1 < matrix.length) {
+        if (matrix[i + 1][j] === true) {
+          result[i][j]++;
+        }
+      }
+      if (j + 1 < matrix.length) {
+        if (matrix[i][j + 1] === true) {
+          result[i][j]++;
+        }
+      }
+      if (i - 1 >= 0 && j + 1 < matrix.length) {
+        if (matrix[i - 1][j + 1] === true) {
+          result[i][j]++;
+        }
+      }
+      if (i + 1 < matrix.length && j - 1 >= 0) {
+        if (matrix[i + 1][j - 1] === true) {
+          result[i][j]++;
+        }
+      }
+    }
+  }
+
   return result;
 }
 
